@@ -7,14 +7,13 @@ export default function NavBar({ token, setToken }) {
       {token ? (
         <ul>
           <li>
-            <Link
-              onClick={() => {
-                setToken("");
-              }}
-              to="/logIn"
-            >
-              log out
-            </Link>
+            <Link to="/Games">Games</Link>
+          </li>
+          <li>
+            <Link to="/Favorite">Favorite</Link>
+          </li>
+          <li>
+            <Link onClick={() => { setToken("");}}to="/logIn" >   log out </Link>
           </li>
         </ul>
       ) : (
@@ -23,7 +22,7 @@ export default function NavBar({ token, setToken }) {
             <Link to="/logIn">logIn</Link>
           </li>
           <li>
-            <Link to="/SinUp">SinUp</Link>
+            <Link to="/SignUp">SignUp</Link>
           </li>
         </ul>
       )}
