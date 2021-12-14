@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrUserManager } from "react-icons/gr";
+import "./SignUp.css"
 //
 export default function LogIn({ setToken }) {
   const [email, setEmail] = useState("");

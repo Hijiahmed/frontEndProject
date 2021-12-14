@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { GrUserManager } from "react-icons/gr";
 import axios from "axios";
-
+import "./SignUp.css"
 //
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -29,6 +31,8 @@ export default function SignUp() {
   };
   return (
     <div className="loginbox">
+      <h1>SIGN UP</h1>
+      <GrUserManager className="log" />
       <input
         onChange={(e) => {
           changeName(e);
@@ -38,7 +42,7 @@ export default function SignUp() {
       />
       <br />
       <br />
-
+      <GrUserManager className="log" />
       <input
         onChange={(e) => {
           changeEmail(e);
@@ -48,7 +52,7 @@ export default function SignUp() {
       />
       <br />
       <br />
-
+      <RiLockPasswordFill className="log" />
       <input
         onChange={(e) => {
           changePass(e);

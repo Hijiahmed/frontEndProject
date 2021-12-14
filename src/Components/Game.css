@@ -1,0 +1,23 @@
+.Gamediv{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    padding: 5px;
+    width: 90%;
+    justify-content: space-around;
+    font-family: "Courier New", Courier, monospace;
+    text-align: center;
+}
+.imgGame{
+     width: 200px;
+  height: 200px;
+  border-radius: 50px;
+}
+.inputComment{
+    width: 50%;}
+.buttonComment{
+    width: 250px;
+    background-color: #e7e7e7; color: black;
+    font-size: 20px;
+    border-radius: 8px;
+}
