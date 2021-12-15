@@ -17,12 +17,10 @@ export default function LogIn({ setToken }) {
   };
   const logIn = async () => {
     try {
-      console.log();
       const res = await axios.post("http://localhost:5000/login", {
         email,
         password,
       });
-      console.log(res.data);
       setToken(res.data.token);
       history.push("/Games");
     } catch (err) {
