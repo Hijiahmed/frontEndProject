@@ -5,20 +5,26 @@ import NavBar from "./Components/NavBar";
 import Games from "./Components/Games";
 import Game from "./Components/Game"
 import { Route } from "react-router-dom";
-import "./App.css"
+// import { Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
+
 //////
 export default function App() {
   const [token, setToken] = useState("")
-  //   const [token, setToken] = useState(() => {
-  //   const saved = localStorage.getItem("token");
-  //   const initialValue = JSON.parse(saved);
-  //   return initialValue  });
-  // useEffect(() => {
-  //   localStorage.setItem("token", JSON.stringify(token));
-  // }, [token]);
+
+    // const [token, setToken] = useState(() => {
+    // const saved = localStorage.getItem("token");
+    // const initialValue = JSON.parse(saved);
+    // return initialValue  });
+  useEffect(() => {
+    if (!token) {
+      const token = localStorage.getItem("token");
+      localStorage.setItem("token", JSON.stringify(token));
+    }
+   
+  }, []);
   return (
     <div>
-      <NavBar token={token} setToken={setToken} />
+      <NavBar  token={token} setToken={setToken} />
       <Route
         exact
         path="/Games"

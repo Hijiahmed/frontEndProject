@@ -4,7 +4,7 @@ import "./NavBar.css"
 //////////////
 export default function NavBar({ token, setToken }) {
   return (
-    <div>
+    <div className="divNavBar">
       {token ? (
         <ul>
           <li>

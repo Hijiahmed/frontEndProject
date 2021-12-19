@@ -13,6 +13,10 @@
   height: 200px;
   border-radius: 50px;
 }
-/* .divOnclick{
-border: 1px solid black;
-} */
+.input{
+  width: 250px;
+  
+}
+.add{
+  width: 200px;
+}

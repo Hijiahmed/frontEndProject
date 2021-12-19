@@ -58,7 +58,7 @@ const ratingChanged = (rate) => {
                   <p>{game.name}</p>
           <p>{game.description}</p>
             <img className='imgGame' src={game.img} alr="no img"  alt=""/>
-            <iframe src={game.video} frameborder="0"></iframe>
+            <iframe src={game.video} className="video1" frameborder="0"></iframe>
             <br />
             <input className="inputComment" onChange={(e)=>{changeComment(e)}} type="text" />
             <br />

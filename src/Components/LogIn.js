@@ -22,6 +22,7 @@ export default function LogIn({ setToken }) {
         password,
       });
       setToken(res.data.token);
+      localStorage.setItem("token", JSON.stringify(res.data.token));
       history.push("/Games");
     } catch (err) {
       console.log("err");

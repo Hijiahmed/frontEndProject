@@ -45,25 +45,27 @@ const result = await axios.delete(`http://localhost:5000/games/${id}`,{
 })
 const copyArray=[...game]
 copyArray.splice(i,1)
-setGame(result.data)
+setGame(copyArray)
     }
     return (
         <div className="Gamediv">
-          <input type="text" placeholder='name' onChange={(e)=>{changeName(e)}}/>
-          <input type="text" placeholder='img' onChange={(e)=>{changeImg(e)}}/>
-          <input type="text" placeholder='Description' onChange={(e)=>{changeDescription(e)}}/>
-          <input type="text" placeholder='Video' onChange={(e)=>{changeVideo(e)}}/>
-          <button onClick={()=>{addGame()}}>add game</button>
+          <input type="text" className='input' placeholder='name' onChange={(e)=>{changeName(e)}}/>
+          <br />
+          <input type="text" className='input' placeholder='img' onChange={(e)=>{changeImg(e)}}/>
+          <br />
+          <input type="text" className='input' placeholder='Description' onChange={(e)=>{changeDescription(e)}}/>
+          <br />
+          <input type="text" className='input' placeholder='Video' onChange={(e)=>{changeVideo(e)}}/>
+          <br />
+          <button onClick={()=>{addGame()}} className='add'>add game</button>
          {game.map((elm,i)=>{
              return (
                <div>
                 <div  className='divOnclick' onClick={() => {
                   gotGame(elm._id);
                 }} key={i}>
-                
                   <p>{elm.name}</p>
                   <img src={elm.img} className='imgGame' alr="no img" />   
-                   
               </div>
                <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
                </div>        
