@@ -15,7 +15,7 @@ export default function Game({ token }) {
       });
     setGame(result.data);
     }
-  }, [token]);
+  }, []);
   const changeComment=(e)=>{
     setInput(e.target.value)
   }

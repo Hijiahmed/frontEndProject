@@ -4,24 +4,23 @@ import SignUp from "./Components/SignUp";
 import NavBar from "./Components/NavBar";
 import Games from "./Components/Games";
 import Game from "./Components/Game"
+import Profile from "./Components/Profile";
+import Favorite from "./Components/Favorite"
 import { Route } from "react-router-dom";
-// import { Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
 
 //////
 export default function App() {
   const [token, setToken] = useState("")
-
     // const [token, setToken] = useState(() => {
     // const saved = localStorage.getItem("token");
     // const initialValue = JSON.parse(saved);
     // return initialValue  });
-  useEffect(() => {
-    if (!token) {
-      const token = localStorage.getItem("token");
-      localStorage.setItem("token", JSON.stringify(token));
-    }
-   
-  }, []);
+  // useEffect(() => {
+  //   if (!token) {
+  //     const token = localStorage.getItem("token");
+  //     localStorage.setItem("token", JSON.stringify(token));
+  //   }
+  // }, []);
   return (
     <div>
       <NavBar  token={token} setToken={setToken} />
@@ -30,6 +29,20 @@ export default function App() {
         path="/Games"
         render={() => {
           return <Games  token={token}/>;
+        }}
+      />
+       <Route
+        exact
+        path="/Favorite"
+        render={() => {
+          return <Favorite  token={token}/>;
+        }}
+      />
+        <Route
+        exact
+        path="/Profile"
+        render={() => {
+          return <Profile  token={token} setToken={setToken}/>;
         }}
       />
          <Route

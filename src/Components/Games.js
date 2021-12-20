@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import {AiOutlineHeart} from 'react-icons/all'
 import "./Games.css"
 export default function Games({token}) {
     const [game, setGame] = useState([])
@@ -46,7 +47,20 @@ const result = await axios.delete(`http://localhost:5000/games/${id}`,{
 const copyArray=[...game]
 copyArray.splice(i,1)
 setGame(copyArray)
-    }
+  }
+//
+const goToLike= async(id)=>{
+  const result = await axios.post(`http://localhost:5000/Like/${id}`,{},{
+    headers: { authorization: "Bearer " + token },
+  })
+ try {
+   console.log(result.data);
+  //  setGame(result.data)
+ } catch (error) {
+   console.log(error);
+ }
+}
+    
     return (
         <div className="Gamediv">
           <input type="text" className='input' placeholder='name' onChange={(e)=>{changeName(e)}}/>
@@ -67,6 +81,8 @@ setGame(copyArray)
                   <p>{elm.name}</p>
                   <img src={elm.img} className='imgGame' alr="no img" />   
               </div>
+              <br />
+              <AiOutlineHeart onClick={()=>{goToLike(elm._id)}}/>
                <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
                </div>        
              )
