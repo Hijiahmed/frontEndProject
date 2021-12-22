@@ -54,8 +54,12 @@ const goToLike= async(id)=>{
     headers: { authorization: "Bearer " + token },
   })
  try {
+for (let i = 0; i < game.length; i++) {
+  
+}
+
+
    console.log(result.data);
-  //  setGame(result.data)
  } catch (error) {
    console.log(error);
  }

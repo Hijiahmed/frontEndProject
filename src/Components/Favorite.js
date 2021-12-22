@@ -7,7 +7,7 @@ export default function Favorite({token}) {
     const {id}=useParams();
     useEffect(async () => {
     if(token){
-        const res = await axios.get(`http://localhost:5000/Like/${id}`, {
+        const res = await axios.get("http://localhost:5000/Like", {
           headers: { authorization: "Bearer " + token },
         });
         console.log(res.data);
@@ -25,6 +25,7 @@ export default function Favorite({token}) {
     return (
         <div>
              {like.map((elm,i)=>{
+               console.log(elm);
              return (
                <div>
                 <div   key={i}>
