@@ -24,8 +24,8 @@ export default function NavBar({ token, setToken }) {
             <Link to="/Games">Games</Link>
           </li>
           <li>
-            <span>{user.name}</span>
-            <Link to="/Profile">Profile</Link>
+            {/* <span>{user.name}</span> */}
+            <Link to="/Profile">{user.name}</Link>
           </li>
           <li>
             <Link to="/Favorite">Favorite</Link>

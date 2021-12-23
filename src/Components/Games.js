@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {AiOutlineHeart} from 'react-icons/all'
 import "./Games.css"
 export default function Games({token}) {
@@ -8,6 +8,7 @@ export default function Games({token}) {
     const [name, setname] = useState("");
     const [img, setimg] = useState("");
     const [video, setVideo] = useState('')
+    const [like, setLike] = useState(false)
     const [description, setDescription] = useState('')
     const history = useHistory();
     useEffect(async () => {
@@ -16,6 +17,13 @@ export default function Games({token}) {
       });
       console.log(token);
       setGame(res.data);
+       if(token){
+        const res = await axios.get("http://localhost:5000/Like", {
+          headers: { authorization: "Bearer " + token },
+        });
+        console.log(res.data);
+        setLike (res.data);
+      }
     }, []);
     const gotGame=(id)=>{
         history.push(`/Game/${id}`)
@@ -55,16 +63,19 @@ const goToLike= async(id)=>{
   })
  try {
 for (let i = 0; i < game.length; i++) {
-  
+  if(game[i]._id==id){
+    setLike(false)
+  }else{
+    setLike(true) 
+  }
 }
-
-
-   console.log(result.data);
  } catch (error) {
    console.log(error);
  }
 }
-    
+const changeColor = () =>{
+  setLike(!like)
+ }  
     return (
         <div className="Gamediv">
           <input type="text" className='input' placeholder='name' onChange={(e)=>{changeName(e)}}/>
@@ -86,7 +97,7 @@ for (let i = 0; i < game.length; i++) {
                   <img src={elm.img} className='imgGame' alr="no img" />   
               </div>
               <br />
-              <AiOutlineHeart onClick={()=>{goToLike(elm._id)}}/>
+              <AiOutlineHeart className={ like ? 'heart active' : 'heart'} onClick={()=>{goToLike(elm._id);changeColor()}} />
                <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
                </div>        
              )

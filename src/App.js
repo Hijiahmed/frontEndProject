@@ -10,17 +10,15 @@ import { Route } from "react-router-dom";
 
 //////
 export default function App() {
-  const [token, setToken] = useState("")
-    // const [token, setToken] = useState(() => {
-    // const saved = localStorage.getItem("token");
-    // const initialValue = JSON.parse(saved);
-    // return initialValue  });
-  // useEffect(() => {
-  //   if (!token) {
-  //     const token = localStorage.getItem("token");
-  //     localStorage.setItem("token", JSON.stringify(token));
-  //   }
-  // }, []);
+  const [token, setToken] = useState(() => {
+    const saved = localStorage.getItem("token");
+    const defultValue = JSON.parse(saved);
+    return defultValue ;
+  });
+  useEffect(() => {
+    localStorage.setItem("token", JSON.stringify(token));
+  }, [token]);
+
   return (
     <div>
       <NavBar  token={token} setToken={setToken} />

@@ -1,0 +1,20 @@
+.inputProfile{
+    width: 200px;
+    height: 40px;
+}
+.buttonUpdate{
+    width: 100px;
+    height: 40px; 
+}
+.mainDivUser{
+    width: 250px;
+    position: absolute;
+    top: 30%;
+    right: 45%; 
+    padding: 30px;
+    border: black solid;
+}
+.imgUser{
+    width: 200px;
+border-radius: 50%;
+}
