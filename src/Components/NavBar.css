@@ -1,29 +1,41 @@
 .divNavBar{
   margin: 0;
   padding: 0;
+  height: 50px;
+  background-color: blue;
+
 }
 ul {
 
   list-style-type: none;
   overflow: hidden;
-  background-color: blue;
  margin: 0;
  padding: 0;
+ height: 100%;
+}
+li {
+  display: inline-block;
+   margin-left: 20px;
+   margin-top: 10px;
 }
 
-li {
-  float: left;
-}
 
 li a {
-  display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
 }
+.imgNavBar{
+  margin-top: -1px;
+  border-radius: 50px;
+  width: 40px;
+  height: 100%;
+}
 
+#profile-img {
+  float: right;
 
+}
 /* ul {
   list-style-type: none;
   margin: 0;

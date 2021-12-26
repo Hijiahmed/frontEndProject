@@ -24,7 +24,7 @@ export default function App() {
       <NavBar  token={token} setToken={setToken} />
       <Route
         exact
-        path="/Games"
+        path="/"
         render={() => {
           return <Games  token={token}/>;
         }}

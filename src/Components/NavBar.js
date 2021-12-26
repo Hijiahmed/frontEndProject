@@ -21,17 +21,16 @@ export default function NavBar({ token, setToken }) {
       {token ? (
         <ul>
           <li>
-            <Link to="/Games">Games</Link>
-          </li>
-          <li>
-            {/* <span>{user.name}</span> */}
-            <Link to="/Profile">{user.name}</Link>
+            <Link to="/">Games</Link>
           </li>
           <li>
             <Link to="/Favorite">Favorite</Link>
           </li>
           <li>
             <Link onClick={() => { setToken("");}}to="/logIn" >   log out </Link>
+          </li>
+          <li id="profile-img">
+            <Link to="/Profile"><img className="imgNavBar" src={user.img}/></Link>
           </li>
         </ul>
       ) : (

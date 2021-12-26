@@ -1,28 +1,28 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import {AiOutlineHeart} from 'react-icons/all'
-import "./Games.css"
+import {AiFillHeart} from "react-icons/ai"
+import "./Games.css";
 export default function Games({token}) {
     const [game, setGame] = useState([])
     const [name, setname] = useState("");
     const [img, setimg] = useState("");
-    const [video, setVideo] = useState('')
-    const [like, setLike] = useState(false)
-    const [description, setDescription] = useState('')
+    const [video, setVideo] = useState('');
+    const [like, setLike] = useState([]);
+    const [description, setDescription] = useState('');
     const history = useHistory();
     useEffect(async () => {
       const res = await axios.get("http://localhost:5000/games", {
         headers: { authorization: "Bearer " + token },
       });
-      console.log(token);
+      console.log(res.data);
       setGame(res.data);
        if(token){
-        const res = await axios.get("http://localhost:5000/Like", {
+        const result = await axios.get("http://localhost:5000/Like", {
           headers: { authorization: "Bearer " + token },
         });
-        console.log(res.data);
-        setLike (res.data);
+        console.log(result.data);
+        setLike (result.data);
       }
     }, []);
     const gotGame=(id)=>{
@@ -57,30 +57,37 @@ copyArray.splice(i,1)
 setGame(copyArray)
   }
 //
-const goToLike= async(id)=>{
+const addLike= async(id)=>{
   const result = await axios.post(`http://localhost:5000/Like/${id}`,{},{
     headers: { authorization: "Bearer " + token },
   })
  try {
-for (let i = 0; i < game.length; i++) {
-  if(game[i]._id==id){
-    setLike(false)
-  }else{
-    setLike(true) 
-  }
-}
+  // setLike(result.data)
  } catch (error) {
    console.log(error);
  }
 }
-const changeColor = () =>{
+//
+// const delteLike=async(id)=>{
+//   const result = await axios.delete(`http://localhost:5000/Like/${id}`,{
+//     headers: { authorization: "Bearer " + token },
+//   })
+//  try {
+// setLike(result.data)
+//  } catch (error) {
+//    console.log(error);
+//  }
+// }
+//
+const changeCoolor=(e)=>{
   setLike(!like)
- }  
+}
+//
     return (
         <div className="Gamediv">
-          <input type="text" className='input' placeholder='name' onChange={(e)=>{changeName(e)}}/>
+          <input type="text" className='input' placeholder='Name' onChange={(e)=>{changeName(e)}}/>
           <br />
-          <input type="text" className='input' placeholder='img' onChange={(e)=>{changeImg(e)}}/>
+          <input type="text" className='input' placeholder='Img' onChange={(e)=>{changeImg(e)}}/>
           <br />
           <input type="text" className='input' placeholder='Description' onChange={(e)=>{changeDescription(e)}}/>
           <br />
@@ -88,19 +95,34 @@ const changeColor = () =>{
           <br />
           <button onClick={()=>{addGame()}} className='add'>add game</button>
          {game.map((elm,i)=>{
-             return (
-               <div>
-                <div  className='divOnclick' onClick={() => {
-                  gotGame(elm._id);
-                }} key={i}>
-                  <p>{elm.name}</p>
-                  <img src={elm.img} className='imgGame' alr="no img" />   
-              </div>
-              <br />
-              <AiOutlineHeart className={ like ? 'heart active' : 'heart'} onClick={()=>{goToLike(elm._id);changeColor()}} />
-               <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
-               </div>        
-             )
+              for(let index = 0; index < like.length ; index++) {
+                // console.log(like[index],"liked");
+                if(like[index]._id==elm._id){
+                  return (
+                    <div>
+                     <div  className='divOnclick' onClick={() => { gotGame(elm._id);}} key={i}>
+                       <p>{elm.name}</p>
+                       <img src={elm.img} className='imgGame' alr="no img" />   
+                      </div>
+                   <br />
+                   <AiFillHeart style={{color:"red"}} onClick={()=>{addLike(elm._id);changeCoolor()}} />
+
+                    <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
+                    </div>        
+                  )
+                }
+               }
+               return (
+                <div>
+                 <div  className='divOnclick' onClick={() => { gotGame(elm._id); }} key={i}>
+                   <p>{elm.name}</p>
+                   <img src={elm.img} className='imgGame' alr="no img" />   
+                  </div>
+               <br />
+               <AiFillHeart style={{color:"gray"}} onClick={()=>{addLike(elm._id);changeCoolor()}} />
+                <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
+                </div>        
+              )
          })}
         </div>
     )
