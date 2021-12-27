@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import "./like.css"
 
 export default function Favorite({token}) {
     const [like, setLike] = useState([]);
@@ -23,14 +24,14 @@ export default function Favorite({token}) {
         setLike(coppyDelete)
       }
     return (
-        <div>
+        <div className='divLike'>
              {like.map((elm,i)=>{
                console.log(elm);
              return (
                <div>
                 <div   key={i}>
                   <p>{elm.name}</p>
-                  <img src={elm.img} alr="no img" />   
+                  <img className='imgLike' src={elm.img} alr="no img" />   
               </div>
               <br />
                <button onClick={()=>{deleteLike(elm._id,i)}}>remove like</button> 

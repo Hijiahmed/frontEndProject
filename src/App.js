@@ -7,6 +7,7 @@ import Game from "./Components/Game"
 import Profile from "./Components/Profile";
 import Favorite from "./Components/Favorite"
 import { Route } from "react-router-dom";
+// import UploadForm from "./firebase/UploadForm";
 
 //////
 export default function App() {
@@ -58,6 +59,7 @@ export default function App() {
         }}
       />
       <Route exact path="/SignUp" component={SignUp} />
+      {/* <UploadForm/> */}
     </div>
   );
 }

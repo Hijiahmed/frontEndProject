@@ -1,16 +1,17 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import {AiFillHeart} from "react-icons/ai"
+import {AiFillHeart} from "react-icons/ai";
 import "./Games.css";
-export default function Games({token}) {
-    const [game, setGame] = useState([])
+export default function Games({token}){
+    const [game, setGame] = useState([]);
     const [name, setname] = useState("");
     const [img, setimg] = useState("");
     const [video, setVideo] = useState('');
     const [like, setLike] = useState([]);
     const [description, setDescription] = useState('');
     const history = useHistory();
+    //
     useEffect(async () => {
       const res = await axios.get("http://localhost:5000/games", {
         headers: { authorization: "Bearer " + token },
@@ -25,6 +26,7 @@ export default function Games({token}) {
         setLike (result.data);
       }
     }, []);
+    //
     const gotGame=(id)=>{
         history.push(`/Game/${id}`)
     }
@@ -40,6 +42,7 @@ export default function Games({token}) {
     const changeDescription=(e)=>{
       setDescription(e.target.value)
     }
+    //
     const addGame=async()=>{
       const result = await axios.post("http://localhost:5000/games",{name,img,video,description},{
         headers: { authorization: "Bearer " + token },
@@ -58,17 +61,17 @@ setGame(copyArray)
   }
 //
 const addLike= async(id)=>{
+  // if(like){
   const result = await axios.post(`http://localhost:5000/Like/${id}`,{},{
     headers: { authorization: "Bearer " + token },
   })
  try {
-  // setLike(result.data)
+  setLike(result.data)
  } catch (error) {
    console.log(error);
  }
-}
-//
-// const delteLike=async(id)=>{
+// }
+// else{
 //   const result = await axios.delete(`http://localhost:5000/Like/${id}`,{
 //     headers: { authorization: "Bearer " + token },
 //   })
@@ -78,10 +81,21 @@ const addLike= async(id)=>{
 //    console.log(error);
 //  }
 // }
-//
-const changeCoolor=(e)=>{
-  setLike(!like)
 }
+
+//
+
+// const delteLike=async(id)=>{
+//   const result = await axios.delete(`http://localhost:5000/Like/${id}`,{
+//     headers: { authorization: "Bearer " + token },
+//   })
+//  try {
+//   //  console.log(token);
+// setLike(result.data)
+//  } catch (error) {
+//    console.log(error);
+//  }
+// }
 //
     return (
         <div className="Gamediv">
@@ -97,7 +111,7 @@ const changeCoolor=(e)=>{
          {game.map((elm,i)=>{
               for(let index = 0; index < like.length ; index++) {
                 // console.log(like[index],"liked");
-                if(like[index]._id==elm._id){
+                if(like[index]._id === elm._id){
                   return (
                     <div>
                      <div  className='divOnclick' onClick={() => { gotGame(elm._id);}} key={i}>
@@ -105,7 +119,7 @@ const changeCoolor=(e)=>{
                        <img src={elm.img} className='imgGame' alr="no img" />   
                       </div>
                    <br />
-                   <AiFillHeart style={{color:"red"}} onClick={()=>{addLike(elm._id);changeCoolor()}} />
+                   <AiFillHeart style={{color:"red"}} onClick={()=>{addLike(elm._id)}} />
 
                     <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
                     </div>        
@@ -119,10 +133,11 @@ const changeCoolor=(e)=>{
                    <img src={elm.img} className='imgGame' alr="no img" />   
                   </div>
                <br />
-               <AiFillHeart style={{color:"gray"}} onClick={()=>{addLike(elm._id);changeCoolor()}} />
-                <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
+               <AiFillHeart style={{color:"gray"}} onClick={()=>{addLike(elm._id)}} />
+               <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> 
                 </div>        
               )
+          
          })}
         </div>
     )

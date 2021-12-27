@@ -21,7 +21,6 @@ const history = useHistory();
   }
   const updateInputImg = (e)=>{
     setImg(e.target.value)
-
 }
     const updateUserName = () =>{
       const result = axios.put("http://localhost:5000/userName" , 

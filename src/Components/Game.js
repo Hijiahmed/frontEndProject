@@ -6,6 +6,8 @@ import ReactStars from "react-rating-stars-component"
 export default function Game({ token }) {
   const [game, setGame] = useState(null);
   const [input, setInput] = useState('')
+  const [name, setname] = useState("")
+  const [img, setimg] = useState('')
   const [rating, setRating] = useState(0)
   const {id} = useParams();
   useEffect(async () => {
@@ -15,7 +17,7 @@ export default function Game({ token }) {
       });
     setGame(result.data);
     }
-  }, []);
+  }, [game]);
   const changeComment=(e)=>{
     setInput(e.target.value)
   }
@@ -47,6 +49,23 @@ const deletecomment =async (comment)=>{
 const ratingChanged = (rate) => {
   setRating(rate)
 };
+
+const updateName = (e)=>{
+  setname(e.target.value)
+}
+const updateInputImg = (e)=>{
+setimg(e.target.value)
+}
+const updateGame=async(id)=>{
+const result = axios.put(`http://localhost:5000/game/${id}`, 
+  {
+  name ,img
+  },
+  {headers: { authorization: "Bearer " + token },
+  }
+  )
+  setGame(result.data)
+}
   return (
     <div className="Gamediv">
         {game? <div>     
@@ -64,6 +83,14 @@ const ratingChanged = (rate) => {
             <br />
             <button className="buttonComment" onClick={()=>{addComment()}}>add comment</button>
             <div>
+            <input className='inputProfile' type="text" placeholder='new name'  onChange={(e)=>{updateName(e)}}/>
+              <br />
+              <input className='inputProfile' type="text" placeholder='new img '  onChange={(e)=>{updateInputImg(e)}}/>
+              <br />
+              <button className='buttonUpdate' onClick={()=>{
+                updateGame(game._id);
+                }}>Update</button> 
+                <br />
             <h1>{game.comment.map((elm,i)=>{
                 return <div key={i}>
                     <p> {elm.userName}</p>
