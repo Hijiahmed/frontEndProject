@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import "./like.css"
 
 export default function Favorite({token}) {
     const [like, setLike] = useState([]);
-    const {id}=useParams();
+    // const {id}=useParams();
+    /////////////////////////////////////
     useEffect(async () => {
     if(token){
         const res = await axios.get("http://localhost:5000/Like", {
@@ -18,6 +19,7 @@ export default function Favorite({token}) {
       const deleteLike = async(id,i)=>{
         const res = await axios.delete(`http://localhost:5000/Like/${id}`, {
             headers: { authorization: "Bearer " + token },
+            
         });
         const coppyDelete=[...like]
         coppyDelete.splice(i,1)

@@ -7,6 +7,7 @@ const [user, setUser] = useState('')
 const [name, setName] = useState("")
 const [img, setImg] = useState('')
 const history = useHistory();
+////////////////////////////////////////
     useEffect( async() => {
       const result = await axios.get("http://localhost:5000/user",
       {headers: { authorization: "Bearer " + token }})
@@ -15,7 +16,7 @@ const history = useHistory();
       } catch (error) {
         console.log(error);
       }
-    }, [])
+    }, [user])
     const updateName = (e)=>{
       setName(e.target.value)
   }

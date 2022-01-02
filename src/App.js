@@ -8,7 +8,6 @@ import Profile from "./Components/Profile";
 import Favorite from "./Components/Favorite"
 import { Route } from "react-router-dom";
 // import UploadForm from "./firebase/UploadForm";
-
 //////
 export default function App() {
   const [token, setToken] = useState(() => {
@@ -18,8 +17,8 @@ export default function App() {
   });
   useEffect(() => {
     localStorage.setItem("token", JSON.stringify(token));
-  }, [token]);
-
+  }, []);
+///////////////////////////////
   return (
     <div>
       <NavBar  token={token} setToken={setToken} />

@@ -15,10 +15,11 @@
 }
 .input{
   width: 250px;
-  
+  height: 60px;
 }
 .add{
   width: 200px;
+  height: 60px;
 }
 .heart{
   font-size: 35px;

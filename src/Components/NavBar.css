@@ -3,10 +3,9 @@
   padding: 0;
   height: 50px;
   background-color: blue;
-
 }
 ul {
-
+  
   list-style-type: none;
   overflow: hidden;
  margin: 0;
@@ -34,7 +33,6 @@ li a {
 
 #profile-img {
   float: right;
-
 }
 /* ul {
   list-style-type: none;

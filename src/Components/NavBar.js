@@ -15,7 +15,8 @@ export default function NavBar({ token, setToken }) {
     } catch (error) {
       console.log(error);
     }
-  }, [])
+  }, [user])
+  //https://avatarfiles.alphacoders.com/178/178027.png
   return (
     <div className="divNavBar">
       {token ? (
