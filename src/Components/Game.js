@@ -79,7 +79,7 @@ const updateInputvideo = (e)=>{
 const updateGame=async(id)=>{
 const result = await axios.put(`http://localhost:5000/game/${id}`, 
   {
-    name, description, img,img1,img2,img3, video
+    name, description, img, video
   },
   {headers: { authorization: "Bearer " + token },
   }
@@ -97,9 +97,6 @@ const result = await axios.put(`http://localhost:5000/game/${id}`,
                   <p>{game.name}</p>
           <p>{game.description}</p>
             <img className='imgGame' src={game.img} alr="no img"  alt=""/>
-            <img className='imgGame' src={game.img1} alr="no img"  alt=""/>
-            <img className='imgGame' src={game.img2} alr="no img"  alt=""/>
-            <img className='imgGame' src={game.img3} alr="no img"  alt=""/>
             <iframe src={game.video} className="video1" frameborder="0"></iframe>
             {/* https://www.youtube.com/embed/SYsi5QuOJNE */}
             <br />
@@ -111,12 +108,6 @@ const result = await axios.put(`http://localhost:5000/game/${id}`,
               <br />
               <input className='inputProfile' type="text" placeholder='new img '  onChange={(e)=>{updateInputImg(e)}}/>
               <br />
-              <input type="text" className='inputProfile' placeholder='Img1' onChange={(e)=>{changeImg1(e)}}/>
-          <br/>
-          <input type="text" className='inputProfile' placeholder='Img2' onChange={(e)=>{changeImg2(e)}}/>
-          <br/>
-          <input type="text" className='inputProfile' placeholder='Img3' onChange={(e)=>{changeImg3(e)}}/>
-          <br />
               <input className='inputProfile' type="text" placeholder='new dec'  onChange={(e)=>{updatedec(e)}}/>
               <br />
               <input className='inputProfile' type="text" placeholder='new video '  onChange={(e)=>{updateInputvideo(e)}}/>
@@ -129,7 +120,7 @@ const result = await axios.put(`http://localhost:5000/game/${id}`,
                 return <div key={i}>
                     <p> {elm.userName}</p>
                     <p>{elm.comment}</p>
-                    <button onClick={()=>{deletecomment(elm.comment)}}>delet </button>
+                    <button onClick={()=>{deletecomment(elm.comment)}}>deletee </button>
               </div> 
             })}</h1>
             </div>

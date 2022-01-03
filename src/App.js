@@ -7,14 +7,17 @@ import Game from "./Components/Game"
 import Profile from "./Components/Profile";
 import Favorite from "./Components/Favorite"
 import { Route } from "react-router-dom";
+import PostGame from "./Components/PostGame";
 // import UploadForm from "./firebase/UploadForm";
 //////
 export default function App() {
+  // const [token, setToken] = useState()
   const [token, setToken] = useState(() => {
     const saved = localStorage.getItem("token");
     const defultValue = JSON.parse(saved);
     return defultValue ;
   });
+  const [admin, setAdmin] = useState("")
   useEffect(() => {
     localStorage.setItem("token", JSON.stringify(token));
   }, []);
@@ -26,7 +29,14 @@ export default function App() {
         exact
         path="/"
         render={() => {
-          return <Games  token={token}/>;
+          return <Games admin={admin}    token={token}/>;
+        }}
+      />
+         <Route
+        exact
+        path="/PostGame"
+        render={() => {
+          return <PostGame   token={token}/>;
         }}
       />
        <Route
@@ -54,7 +64,7 @@ export default function App() {
         exact
         path="/LogIn"
         render={() => {
-          return <LogIn setToken={setToken} />;
+          return <LogIn setToken={setToken} setAdmin={setAdmin} />;
         }}
       />
       <Route exact path="/SignUp" component={SignUp} />

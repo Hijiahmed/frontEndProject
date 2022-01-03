@@ -1,0 +1,54 @@
+import React,{useState} from 'react';
+import axios from 'axios';
+
+export default function PostGame({token}) {
+    const [game, setGame] = useState([]);
+    const [name, setname] = useState("");
+    const [img, setimg] = useState("");
+    const [extraImg, setExtraImg] = useState("");
+    const [video, setVideo] = useState('');
+    const [description, setDescription] = useState('');
+
+    const changeName=(e)=>{
+        setname(e.target.value)
+      }
+      const changeImg=(e)=>{
+        setimg(e.target.value)
+      }
+      const changeExtraImg=(e)=>{
+        setExtraImg(e.target.value)
+      }
+
+      const changeVideo=(e)=>{
+        setVideo(e.target.value)
+      }
+      const changeDescription=(e)=>{
+        setDescription(e.target.value)
+      }
+      //
+      const addGame=async()=>{
+        const result = await axios.post("http://localhost:5000/games",{name, description, img, video},{
+          headers: { authorization: "Bearer " + token },
+        })
+        const copyArray=[...game]
+        copyArray.push(result.data)
+        setGame(copyArray)
+      }
+    return (
+        <div>
+         <input type="text" className='input' placeholder='Name' onChange={(e)=>{changeName(e)}}/>
+          <br/>
+          <input type="text" className='input' placeholder='Img' onChange={(e)=>{changeImg(e)}}/>
+          <br/>
+          <input type="text" className='input' placeholder='extraImg' onChange={(e)=>{changeExtraImg(e)}}/>
+          <br/>
+          <br/>
+          <input type="text" className='input' placeholder='Description' onChange={(e)=>{changeDescription(e)}}/>
+          <br/>
+          <input type="text" className='input' placeholder='Video' onChange={(e)=>{changeVideo(e)}}/>
+          <br/>
+          <button onClick={()=>{addGame()}} className='add'>add game</button>
+          <br/>
+        </div>
+    )
+}

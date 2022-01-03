@@ -5,7 +5,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { GrUserManager } from "react-icons/gr";
 import "./SignUp.css"
 //
-export default function LogIn({ setToken }) {
+export default function LogIn({ setToken,setAdmin }) {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const history = useHistory();
@@ -22,6 +22,7 @@ export default function LogIn({ setToken }) {
         password,
       });
       setToken(res.data.token);
+      setAdmin(res.data.admin);
       localStorage.setItem("token", JSON.stringify(res.data.token));
       history.push("/");
     } catch (err) {

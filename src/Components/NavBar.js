@@ -25,6 +25,9 @@ export default function NavBar({ token, setToken }) {
             <Link to="/">Games</Link>
           </li>
           <li>
+          { user.admin==true?(  <Link  to="/PostGame"> PostGame </Link>):("")}
+          </li>
+          <li>
             <Link to="/Favorite">Favorite</Link>
           </li>
           <li>
