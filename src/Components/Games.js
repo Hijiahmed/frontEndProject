@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import {AiFillHeart} from "react-icons/ai";
 import "./Games.css";
+//
 export default function Games({token,admin}){
     const [game, setGame] = useState([]);
     const [like, setLike] = useState([]);
@@ -26,7 +27,7 @@ export default function Games({token,admin}){
     const gotGame=(id)=>{
         history.push(`/Game/${id}`)
     }
-
+//
   const deleteGame=async(id,i)=>{
 const result = await axios.delete(`http://localhost:5000/games/${id}`,{
   headers: { authorization: "Bearer " + token },
@@ -60,14 +61,13 @@ const deleteLike=async(id)=>{
    console.log(error);
  }
 }
+//
     return (
-      
         <div className="Gamediv">
  {admin == true ?(
    <div className="Gamediv">
    {game.map((elm,i)=>{
               for(let index = 0; index < like.length ; index++) {
-                // console.log(like[index],"liked");
                 if(like[index]._id === elm._id){
                   return (
                     <div>

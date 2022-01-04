@@ -12,12 +12,12 @@ import PostGame from "./Components/PostGame";
 //////
 export default function App() {
   // const [token, setToken] = useState()
+  const [admin, setAdmin] = useState("")
   const [token, setToken] = useState(() => {
     const saved = localStorage.getItem("token");
     const defultValue = JSON.parse(saved);
     return defultValue ;
   });
-  const [admin, setAdmin] = useState("")
   useEffect(() => {
     localStorage.setItem("token", JSON.stringify(token));
   }, []);

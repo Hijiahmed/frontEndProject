@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
-
 import "./NavBar.css"
 //////////////
 export default function NavBar({ token, setToken }) {
@@ -45,6 +44,7 @@ export default function NavBar({ token, setToken }) {
           <li>
             <Link to="/SignUp">SignUp</Link>
           </li>
+    
         </ul>
       )}
     </div>
