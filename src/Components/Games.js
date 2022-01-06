@@ -7,6 +7,7 @@ import "./Games.css";
 export default function Games({token,admin}){
     const [game, setGame] = useState([]);
     const [like, setLike] = useState([]);
+    const [user, setUser] = useState([])
     const history = useHistory();
     //////////////////////////////////////////////////////
     useEffect(async () => {
@@ -22,6 +23,13 @@ export default function Games({token,admin}){
         console.log(result.data);
         setLike (result.data);
       }
+      const result = await axios.get("http://localhost:5000/user",
+    {headers: { authorization: "Bearer " + token }})
+    try {
+      setUser(result.data)
+    } catch (error) {
+      console.log(error);
+    }
     }, []);
     //
     const gotGame=(id)=>{
@@ -64,7 +72,7 @@ const deleteLike=async(id)=>{
 //
     return (
         <div className="Gamediv">
- {admin == true ?(
+ {/* {admin == true ?(
    <div className="Gamediv">
    {game.map((elm,i)=>{
               for(let index = 0; index < like.length ; index++) {
@@ -131,7 +139,44 @@ const deleteLike=async(id)=>{
 
 )}
 </div>
-)}
+)} */}
+
+{/*  */}
+  <div className="Gamediv">
+    {/* {user._id} */}
+   {game.map((elm,i)=>{
+              for(let index = 0; index < like.length ; index++) {
+                if(like[index]._id === elm._id){
+                  return (
+                    <div>
+                     <div  className='divOnclick' onClick={() => { gotGame(elm._id);}} key={i}>
+                       <p>{elm.name}</p>
+                       <img src={elm.img} className='imgGame' alr="no img" />   
+                      </div>
+                   <br />
+                   <AiFillHeart style={{color:"red"}} onClick={()=>{deleteLike(elm._id)}} />
+                   {user.admin==true?(
+                <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> ):("")
+               }
+                    </div>        
+                  )
+                }
+               }
+               return (
+                <div>
+                 <div  className='divOnclick' onClick={() => {gotGame(elm._id); }} key={i}>
+                   <p>{elm.name}</p>
+                   <img src={elm.img} className='imgGame' alr="no img" />   
+                  </div>
+               <br />
+               <AiFillHeart style={{color:"gray"}} onClick={()=>{addLike(elm._id)}} />
+               {user.admin==true?(
+                <button onClick={()=>{deleteGame(elm._id,i)}}>remove game</button> ):("")
+               }
+                </div>        
+               )
+})}
+</div>
         
         </div>
     )

@@ -6,6 +6,7 @@ import { GrUserManager } from "react-icons/gr";
 import "./SignUp.css"
 //
 export default function LogIn({ setToken,setAdmin }) {
+  // setUserId
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const history = useHistory();
@@ -22,8 +23,11 @@ export default function LogIn({ setToken,setAdmin }) {
         password,
       });
       setToken(res.data.token);
-      setAdmin(res.data.admin);
+      setAdmin(res.data.payload.admin);
+      // setUserId(res.data.userId);
+      console.log(res.data);
       localStorage.setItem("token", JSON.stringify(res.data.token));
+      // localStorage.setItem("admin", JSON.stringify(res.data.payload.admin));
       history.push("/");
     } catch (err) {
       console.log("err");

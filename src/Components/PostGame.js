@@ -5,7 +5,7 @@ export default function PostGame({token}) {
     const [game, setGame] = useState([]);
     const [name, setname] = useState("");
     const [img, setimg] = useState("");
-    const [extraImg, setExtraImg] = useState("");
+  
     const [video, setVideo] = useState('');
     const [description, setDescription] = useState('');
 
@@ -15,9 +15,7 @@ export default function PostGame({token}) {
       const changeImg=(e)=>{
         setimg(e.target.value)
       }
-      const changeExtraImg=(e)=>{
-        setExtraImg(e.target.value)
-      }
+
 
       const changeVideo=(e)=>{
         setVideo(e.target.value)
@@ -34,13 +32,12 @@ export default function PostGame({token}) {
         copyArray.push(result.data)
         setGame(copyArray)
       }
+     
     return (
         <div>
          <input type="text" className='input' placeholder='Name' onChange={(e)=>{changeName(e)}}/>
           <br/>
           <input type="text" className='input' placeholder='Img' onChange={(e)=>{changeImg(e)}}/>
-          <br/>
-          <input type="text" className='input' placeholder='extraImg' onChange={(e)=>{changeExtraImg(e)}}/>
           <br/>
           <br/>
           <input type="text" className='input' placeholder='Description' onChange={(e)=>{changeDescription(e)}}/>
@@ -48,6 +45,8 @@ export default function PostGame({token}) {
           <input type="text" className='input' placeholder='Video' onChange={(e)=>{changeVideo(e)}}/>
           <br/>
           <button onClick={()=>{addGame()}} className='add'>add game</button>
+       
+
           <br/>
         </div>
     )

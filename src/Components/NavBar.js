@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import "./NavBar.css"
 //////////////
-export default function NavBar({ token, setToken }) {
-  const [user, setUser] = useState("")
+export default function NavBar({ token, setToken,admin }) {
+  const [user, setUser] = useState([])
 //
   useEffect( async() => {
     const result = await axios.get("http://localhost:5000/user",
@@ -14,7 +14,7 @@ export default function NavBar({ token, setToken }) {
     } catch (error) {
       console.log(error);
     }
-  }, [user])
+  }, [token])
   //https://avatarfiles.alphacoders.com/178/178027.png
   return (
     <div className="divNavBar">

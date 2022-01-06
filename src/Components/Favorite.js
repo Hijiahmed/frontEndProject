@@ -31,7 +31,7 @@ export default function Favorite({token}) {
                console.log(elm);
              return (
                <div>
-                <div   key={i}>
+                <div key={i}>
                   <p>{elm.name}</p>
                   <img className='imgLike' src={elm.img} alr="no img" />   
               </div>

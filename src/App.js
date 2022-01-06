@@ -12,19 +12,21 @@ import PostGame from "./Components/PostGame";
 //////
 export default function App() {
   // const [token, setToken] = useState()
-  const [admin, setAdmin] = useState("")
+  const [admin, setAdmin] = useState(false)
   const [token, setToken] = useState(() => {
     const saved = localStorage.getItem("token");
+ 
     const defultValue = JSON.parse(saved);
     return defultValue ;
   });
   useEffect(() => {
     localStorage.setItem("token", JSON.stringify(token));
+ 
   }, []);
 ///////////////////////////////
   return (
     <div>
-      <NavBar  token={token} setToken={setToken} />
+      <NavBar admin={admin}  token={token} setToken={setToken} />
       <Route
         exact
         path="/"
@@ -39,6 +41,7 @@ export default function App() {
           return <PostGame   token={token}/>;
         }}
       />
+     
        <Route
         exact
         path="/Favorite"
@@ -57,7 +60,7 @@ export default function App() {
         exact
         path="/Game/:id"
         render={() => {
-          return <Game  token={token}/>;
+          return <Game admin={admin}  token={token}/>;
         }}
       />
       <Route
