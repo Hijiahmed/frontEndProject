@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import useStorage from '../hooks/UseStorege';
+import useStorage from './UseStorege';
 
-const ProgressBar = ({ file, setFile }) => {
+const ProgressBar = ({ file, setFile,setImg }) => {
   const { progress, url } = useStorage(file);
 
   useEffect(() => {
     if (url) {
       console.log(url);
       setFile(null);
+      setImg(url)
     }
   }, [url, setFile]);
 

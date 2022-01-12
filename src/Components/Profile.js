@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import "./Profile.css"
 import { useHistory } from 'react-router-dom'
+import Up from "../firebase/comp/Up"
 // import { storage } from "../firebase/Config";
 export default function Profile({token,setToken}) {
 const [user, setUser] = useState('')
@@ -21,9 +22,7 @@ const history = useHistory();
     const updateName = (e)=>{
       setName(e.target.value)
   }
-  const updateInputImg = (e)=>{
-    setImg(e.target.value)
-}
+
     const updateUserName = () =>{
       const result = axios.put("http://localhost:5000/userName" , 
       {
@@ -63,7 +62,7 @@ const history = useHistory();
           <button onClick={()=>{removeUser(user._id)}}>delete user</button>
               <input className='inputProfile' type="text" placeholder='new name'  onChange={(e)=>{updateName(e)}}/>
               <br />
-              <input className='inputProfile' type="text" placeholder='new img '  onChange={(e)=>{updateInputImg(e)}}/>
+             <Up setImg={setImg} />
               <br />
                <button className='buttonUpdate' onClick={()=>{
                 updateUserName();

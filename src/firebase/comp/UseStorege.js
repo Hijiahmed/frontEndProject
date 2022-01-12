@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {hiji,h} from '../fire/Firebase';
+import {hiji,h} from './Firebase';
 
 const useStorage = (file) => {
   const [progress, setProgress] = useState(0);

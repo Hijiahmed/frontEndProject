@@ -95,27 +95,23 @@ export default function Game({ token,admin }) {
     );
     setGame(result.data);
   };
-
-
 //
 const changeExtraImg=(e)=>{
   setExtraImg(e.target.value)
 }
 //
-const addExtraImg = async (id) => {
+const addExtraImg = async () => {
   try {
-    const result = await axios.post(`http://localhost:5000/img/${id}`,{extraImg},{
+    console.log(extraImg,id,"hiji");
+    const result = await axios.post(`http://localhost:5000/img/${id}`,{img :extraImg},{
       headers: { authorization: "Bearer " + token },
     })
-
-    setExtraImg(result.data);
+    setGame({ ...game, img: result.data.extraImg });
     console.log(result.data);
   } catch (error) {
     console.log(error);
   }
 };
-
-
 //
   return (
     <div className="Gamediv">
@@ -125,15 +121,17 @@ const addExtraImg = async (id) => {
           <p>{game.name}</p>
           <p>{game.description}</p>
           <img className="imgGame" src={game.img} alr="no img" alt="" />
-          {game.extraImg.map((element,index)=>{
-return(
-<div key={index}>
-<img className="imgGame" src={element.extraImg} alr="no img" alt="" />
+          {game.extraImg.map((element)=>{
+  return(
+    // console.log(element);
+<div>
+
+  <img className="imgGame" src={element} alt="" /> 
 </div>
-)
-          })
-           
-          }
+
+  )
+
+})}
           
           <iframe src={game.video} className="video1" frameborder="0"></iframe>
           {/* https://www.youtube.com/embed/SYsi5QuOJNE */}
@@ -209,13 +207,20 @@ onClick={() => {
 Update
 </button>
 <br />
+
+
+
 <div>
  <input type="text" className='input' placeholder='extraImg' onChange={(e)=>{changeExtraImg(e)}}/>
 <br />
 <button onClick={()=>{addExtraImg()}} className='add'> Add ExtraImg</button>
-           <img src={game.extraImg} alt="" />
+           {/* <img src={game.extraImg} alt="" /> */}
         </div>
-</div> :""}
+
+</div> 
+
+
+:""}
             <br />
             <h1>
               {game.comment.map((elm, i) => {
