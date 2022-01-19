@@ -15,13 +15,12 @@ export default function App() {
   const [admin, setAdmin] = useState(false)
   const [token, setToken] = useState(() => {
     const saved = localStorage.getItem("token");
- 
     const defultValue = JSON.parse(saved);
     return defultValue ;
   });
   useEffect(() => {
-    localStorage.setItem("token", JSON.stringify(token));
- 
+    // localStorage.setItem("token", JSON.stringify(token));
+    localStorage.getItem("token", JSON.stringify(token));
   }, []);
 ///////////////////////////////
   return (

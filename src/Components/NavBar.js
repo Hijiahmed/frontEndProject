@@ -23,6 +23,7 @@ export default function NavBar({ token, setToken,admin }) {
           <li>
             <Link to="/">Games</Link>
           </li>
+          
           <li>
           { user.admin==true?(  <Link  to="/PostGame"> PostGame </Link>):("")}
           </li>
@@ -30,7 +31,8 @@ export default function NavBar({ token, setToken,admin }) {
             <Link to="/Favorite">Favorite</Link>
           </li>
           <li>
-            <Link onClick={() => { setToken("");}}to="/logIn" >   log out </Link>
+            <Link onClick={() => {localStorage.setItem("token", JSON.stringify(""));
+             setToken("");}}to="/logIn" >   log out </Link>
           </li>
           <li id="profile-img">
             <Link to="/Profile"><img className="imgNavBar" src={user.img}/></Link>

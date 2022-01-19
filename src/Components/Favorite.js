@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
-// import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import "./like.css"
 
 export default function Favorite({token}) {
     const [like, setLike] = useState([]);
+    const history = useHistory();
     // const {id}=useParams();
     /////////////////////////////////////
     useEffect(async () => {
@@ -25,6 +26,10 @@ export default function Favorite({token}) {
         coppyDelete.splice(i,1)
         setLike(coppyDelete)
       }
+      const gotGame = (id) => {
+        history.push(`/Game/${id}`);
+      };
+      //
     return (
         <div className='divLike'>
              {like.map((elm,i)=>{
@@ -33,7 +38,9 @@ export default function Favorite({token}) {
                <div>
                 <div key={i}>
                   <p>{elm.name}</p>
-                  <img className='imgLike' src={elm.img} alr="no img" />   
+                  <img className='imgLike' src={elm.img}  alr="no img" onClick={() => {
+                        gotGame(elm._id);
+                      }} />   
               </div>
               <br />
                <button onClick={()=>{deleteLike(elm._id,i)}}>remove like</button> 

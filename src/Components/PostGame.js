@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import axios from 'axios';
-
+import "./postGame.css"
 export default function PostGame({token}) {
     const [game, setGame] = useState([]);
     const [name, setname] = useState("");
@@ -34,17 +34,17 @@ export default function PostGame({token}) {
       }
      
     return (
-        <div>
+        <div className='divPostGame'>
          <input type="text" className='input' placeholder='Name' onChange={(e)=>{changeName(e)}}/>
           <br/>
           <input type="text" className='input' placeholder='Img' onChange={(e)=>{changeImg(e)}}/>
           <br/>
           <br/>
-          <input type="text" className='input' placeholder='Description' onChange={(e)=>{changeDescription(e)}}/>
+          <input type="text" className='input' placeholder='Desc' onChange={(e)=>{changeDescription(e)}}/>
           <br/>
           <input type="text" className='input' placeholder='Video' onChange={(e)=>{changeVideo(e)}}/>
           <br/>
-          <button onClick={()=>{addGame()}} className='add'>add game</button>
+          <button onClick={()=>{addGame()}} className='addGame'>add game</button>
        
 
           <br/>

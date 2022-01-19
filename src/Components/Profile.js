@@ -2,6 +2,9 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import "./Profile.css"
 import { useHistory } from 'react-router-dom'
+import {MdOutlineDeleteForever} from 'react-icons/md'
+import {GrUpdate} from 'react-icons/gr'
+
 import Up from "../firebase/comp/Up"
 // import { storage } from "../firebase/Config";
 export default function Profile({token,setToken}) {
@@ -59,15 +62,17 @@ const history = useHistory();
           <p>{user.name}</p>
           <img className='imgUser' src={user.img} alt="no img" />
           <br />
-          <button onClick={()=>{removeUser(user._id)}}>delete user</button>
+        
               <input className='inputProfile' type="text" placeholder='new name'  onChange={(e)=>{updateName(e)}}/>
               <br />
-             <Up setImg={setImg} />
-              <br />
-               <button className='buttonUpdate' onClick={()=>{
+              <div className='divIcon'>
+              <div className='Up'>  <Up setImg={setImg} /></div>
+           <div className='GrUpdate'> <GrUpdate className='buttonUpdate' onClick={()=>{
                 updateUserName();
                 updateImage();
-                }}>update</button> 
+                }}/></div>
+              <div className='MdOutlineDeleteForever'> <MdOutlineDeleteForever className='reactIconDeleteUser'  onClick={()=>{removeUser(user._id)}}/></div>
+              </div>
         </div>
     )
 }

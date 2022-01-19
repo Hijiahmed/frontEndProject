@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import ProgressBar from './ProgressBar';
-import {BiArrowToBottom} from 'react-icons/bi'
+import {BiUpload} from 'react-icons/bi'
 import '../../Components/Profile.css'
 export default function Up({setImg}) {
     const [file, setFile] = useState(null);
@@ -22,7 +22,7 @@ export default function Up({setImg}) {
       <form>
         <label>
           <input id='fileUpdateInput'  type="file" onChange={handleChange} />
-          <label  htmlFor="fileUpdateInput"> <BiArrowToBottom className='iconUplouad'/> </label>
+          <label  htmlFor="fileUpdateInput"> <BiUpload className='iconUplouad'/> </label>
           {/* htmlFor تخلي الليبل يحل محل الشيء اللي ابي اضغطة مثل الاينبوت هنا  */}
           {/* htmlFor in html == for  */}
           <span>+</span>
