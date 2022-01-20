@@ -25,7 +25,7 @@ export default function PostGame({token}) {
       }
       //
       const addGame=async()=>{
-        const result = await axios.post("http://localhost:5000/games",{name, description, img, video},{
+        const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/games`,{name, description, img, video},{
           headers: { authorization: "Bearer " + token },
         })
         const copyArray=[...game]

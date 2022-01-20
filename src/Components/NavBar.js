@@ -7,7 +7,7 @@ export default function NavBar({ token, setToken,admin }) {
   const [user, setUser] = useState([])
 //
   useEffect( async() => {
-    const result = await axios.get("http://localhost:5000/user",
+    const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user`,
     {headers: { authorization: "Bearer " + token }})
     try {
       setUser(result.data)

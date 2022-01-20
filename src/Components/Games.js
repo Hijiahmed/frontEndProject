@@ -12,17 +12,17 @@ export default function Games({ token, admin }) {
   const history = useHistory();
   //////////////////////////////////////////////////////
   useEffect(async () => {
-    const res = await axios.get("http://localhost:5000/games");
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/games`);
     console.log(res.data);
     setGame(res.data);
     if (token) {
-      const result = await axios.get("http://localhost:5000/Like", {
+      const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/Like`, {
         headers: { authorization: "Bearer " + token },
       });
       console.log(result.data);
       setLike(result.data);
     }
-    const result = await axios.get("http://localhost:5000/user", {
+    const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user`, {
       headers: { authorization: "Bearer " + token },
     });
     try {
@@ -49,7 +49,7 @@ export default function Games({ token, admin }) {
   };
   //
   const deleteGame = async (id, i) => {
-    const result = await axios.delete(`http://localhost:5000/games/${id}`, {
+    const result = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/games/${id}`, {
       headers: { authorization: "Bearer " + token },
     });
     const copyArray = [...game];
@@ -60,7 +60,7 @@ export default function Games({ token, admin }) {
   const addLike = async (id) => {
     try {
       const result = await axios.post(
-        `http://localhost:5000/Like/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/Like/${id}`,
         {},
         {
           //
@@ -76,7 +76,7 @@ export default function Games({ token, admin }) {
   //
   const deleteLike = async (id) => {
     try {
-      const result = await axios.delete(`http://localhost:5000/Like/${id}`, {
+      const result = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/Like/${id}`, {
         headers: { authorization: "Bearer " + token },
       });
       console.log(result.data);

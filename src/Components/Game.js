@@ -20,12 +20,12 @@ export default function Game({ token, admin }) {
   const { id } = useParams();
   useEffect(async () => {
     if (token) {
-      const result = await axios.get(`http://localhost:5000/game/${id}`, {
+      const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/game/${id}`, {
         headers: { authorization: "Bearer " + token },
       });
       setGame(result.data);
     }
-    const result = await axios.get("http://localhost:5000/user", {
+    const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user`, {
       headers: { authorization: "Bearer " + token },
     });
     try {
@@ -41,7 +41,7 @@ export default function Game({ token, admin }) {
   const addComment = async () => {
     try {
       const result = await axios.post(
-        `http://localhost:5000/comment/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/comment/${id}`,
         {
           comment: input,
           rating: rating,
@@ -56,7 +56,7 @@ export default function Game({ token, admin }) {
   const deletecomment = async (comment) => {
     try {
       const result = await axios.put(
-        `http://localhost:5000/comment/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/comment/${id}`,
         { comment: comment, rating: rating },
         { headers: { authorization: "Bearer " + token } }
       );
@@ -85,7 +85,7 @@ export default function Game({ token, admin }) {
 
   const updateGame = async (id) => {
     const result = await axios.put(
-      `http://localhost:5000/game/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/game/${id}`,
       {
         name,
         description,
@@ -105,7 +105,7 @@ export default function Game({ token, admin }) {
     try {
       console.log(extraImg, id, "hiji");
       const result = await axios.post(
-        `http://localhost:5000/img/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/img/${id}`,
         { img: extraImg },
         {
           headers: { authorization: "Bearer " + token },

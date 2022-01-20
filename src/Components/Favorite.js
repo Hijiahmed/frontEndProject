@@ -10,7 +10,7 @@ export default function Favorite({token}) {
     /////////////////////////////////////
     useEffect(async () => {
     if(token){
-        const res = await axios.get("http://localhost:5000/Like", {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/Like`, {
           headers: { authorization: "Bearer " + token },
         });
         console.log(res.data);
@@ -18,7 +18,7 @@ export default function Favorite({token}) {
       }
       }, []);
       const deleteLike = async(id,i)=>{
-        const res = await axios.delete(`http://localhost:5000/Like/${id}`, {
+        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/Like/${id}`, {
             headers: { authorization: "Bearer " + token },
             
         });

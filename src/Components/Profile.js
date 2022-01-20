@@ -14,7 +14,7 @@ const [img, setImg] = useState('')
 const history = useHistory();
 ////////////////////////////////////////
     useEffect( async() => {
-      const result = await axios.get("http://localhost:5000/user",
+      const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user`,
       {headers: { authorization: "Bearer " + token }})
       try {
         setUser(result.data)
@@ -27,7 +27,7 @@ const history = useHistory();
   }
 
     const updateUserName = () =>{
-      const result = axios.put("http://localhost:5000/userName" , 
+      const result = axios.put(`${process.env.REACT_APP_BACKEND_URL}/userName` , 
       {
       name:name ,
       },
@@ -37,7 +37,7 @@ const history = useHistory();
       setName(result.data)
       }
      const updateImage=()=>{
-      const result = axios.put("http://localhost:5000/userImg" , 
+      const result = axios.put(`${process.env.REACT_APP_BACKEND_URL}/userImg` , 
       {
       img:img ,
       },
@@ -47,7 +47,7 @@ const history = useHistory();
       setImg(result.data)
      }
      const removeUser= async(id)=>{
-       const result =await axios.delete(`http://localhost:5000/user/${id}`,{headers: { authorization: "Bearer " + token }})
+       const result =await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/user/${id}`,{headers: { authorization: "Bearer " + token }})
        console.log(result);
       if(result.status===user){
         setUser(result.data)

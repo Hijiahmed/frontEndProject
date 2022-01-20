@@ -5,7 +5,6 @@
   background-color: rgb(12, 12, 117);
 }
 ul {
-  
   list-style-type: none;
   overflow: hidden;
  margin: 0;
@@ -17,8 +16,6 @@ li {
    margin-left: 20px;
    margin-top: 10px;
 }
-
-
 li a {
   color: white;
   text-align: center;
@@ -30,7 +27,6 @@ li a {
   width: 40px;
   height: 100%;
 }
-
 #profile-img {
   float: right;
 }

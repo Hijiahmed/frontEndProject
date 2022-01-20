@@ -17,7 +17,7 @@ export default function LogIn({ setToken,setAdmin }) {
   };
   const logIn = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/login", {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
         email,
         password,
       });

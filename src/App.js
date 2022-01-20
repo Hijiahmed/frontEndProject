@@ -8,9 +8,10 @@ import Profile from "./Components/Profile";
 import Favorite from "./Components/Favorite"
 import { Route } from "react-router-dom";
 import PostGame from "./Components/PostGame";
-// import UploadForm from "./firebase/UploadForm";
+require('dotenv').config()
 //////
 export default function App() {
+  console.log(process.env.REACT_APP_BACKEND_URL,"backend url");
   // const [token, setToken] = useState()
   const [admin, setAdmin] = useState(false)
   const [token, setToken] = useState(() => {
